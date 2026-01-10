@@ -202,6 +202,14 @@ void loop() {
   // 3. Obsługa rozłączenia BT
   if (shouldPrintDisconnection) {
     shouldPrintDisconnection = false;
+
+    // Resetuj stan połączenia
+    isConnected = false;
+
+    // Wyczyść dane poprzedniego urządzenia
+    connectedDeviceName[0] = '\0';
+    connectedDeviceMAC[0] = '\0';
+
     if (ENABLE_SERIAL_DEBUG) Serial.println("BT:DISCONNECTED");
     Serial2.println("BT:DISCONNECTED");
     if (ENABLE_SERIAL_DEBUG) Serial.flush();
