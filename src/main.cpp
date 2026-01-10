@@ -17,7 +17,6 @@
 #include "AudioTools.h"
 #include "BluetoothA2DPSink.h"
 #include "esp_gap_bt_api.h"
-#include "esp_task_wdt.h"
 #include "config.h"
 #include "utils.h"
 #include "callbacks.h"
@@ -63,9 +62,6 @@ BluetoothA2DPSink a2dp_sink(i2s);
 // ============================================================================
 
 void setup() {
-  // Inicjalizacja watchdog (10s timeout) dla stabilności systemu
-  esp_task_wdt_init(10, true);
-
   // Inicjalizacja UART dla PC (debug/status) - jeśli włączony
   Serial.begin(115200);
   if (!Serial) {
