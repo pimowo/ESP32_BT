@@ -69,10 +69,10 @@ void setup() {
     while (true) delay(1000);
   }
 
-  // Inicjalizacja UART1 dla metadanych i statusu (GPIO 17 TX)
-  Serial1.begin(115200);
-  if (!Serial1) {
-    if (ENABLE_SERIAL_DEBUG) Serial.println("BT:ERROR:UART1_INIT_FAILED");
+  // Inicjalizacja UART2 dla metadanych i statusu (GPIO 16 RX, GPIO 17 TX)
+  Serial2.begin(115200, SERIAL_8N1, 16, 17);
+  if (!Serial2) {
+    if (ENABLE_SERIAL_DEBUG) Serial.println("BT:ERROR:UART2_INIT_FAILED");
     while (true) delay(1000);
   }
 
@@ -157,15 +157,15 @@ void loop() {
     strcpy(connectedDeviceName, pendingDeviceName);
 
     if (ENABLE_SERIAL_DEBUG) Serial.println("BT:CONNECTED");
-    Serial1.println("BT:CONNECTED");
+    Serial2.println("BT:CONNECTED");
 
     if (connectedDeviceMAC[0] != '\0') {
       if (ENABLE_SERIAL_DEBUG) {
         Serial.print("BT:MAC:");
         Serial.println(connectedDeviceMAC);
       }
-      Serial1.print("BT:MAC:");
-      Serial1.println(connectedDeviceMAC);
+      Serial2.print("BT:MAC:");
+      Serial2.println(connectedDeviceMAC);
     }
 
     if (connectedDeviceName[0] != '\0') {
@@ -173,12 +173,12 @@ void loop() {
         Serial.print("BT:NAME:");
         Serial.println(connectedDeviceName);
       }
-      Serial1.print("BT:NAME:");
-      Serial1.println(connectedDeviceName);
+      Serial2.print("BT:NAME:");
+      Serial2.println(connectedDeviceName);
     }
 
     if (ENABLE_SERIAL_DEBUG) Serial.flush();
-    Serial1.flush();
+    Serial2.flush();
   }
 
   // 2. Ustawienie głośności z opóźnieniem
@@ -193,9 +193,9 @@ void loop() {
   if (shouldPrintDisconnection) {
     shouldPrintDisconnection = false;
     if (ENABLE_SERIAL_DEBUG) Serial.println("BT:DISCONNECTED");
-    Serial1.println("BT:DISCONNECTED");
+    Serial2.println("BT:DISCONNECTED");
     if (ENABLE_SERIAL_DEBUG) Serial.flush();
-    Serial1.flush();
+    Serial2.flush();
   }
 
   // 4. Zmiany stanu audio (play/stop)
@@ -205,16 +205,16 @@ void loop() {
     switch (currentAudioState) {
       case ESP_A2D_AUDIO_STATE_STARTED:
         if (ENABLE_SERIAL_DEBUG) Serial.println("BT:PLAYING");
-        Serial1.println("BT:PLAYING");
+        Serial2.println("BT:PLAYING");
         break;
       case ESP_A2D_AUDIO_STATE_STOPPED:
         if (ENABLE_SERIAL_DEBUG) Serial.println("BT:STOPPED");
-        Serial1.println("BT:STOPPED");
+        Serial2.println("BT:STOPPED");
         break;
     }
 
     if (ENABLE_SERIAL_DEBUG) Serial.flush();
-    Serial1.flush();
+    Serial2.flush();
   }
   
   // 5. Wysyłanie metadanych - ARTIST (przez UART1)
@@ -225,10 +225,10 @@ void loop() {
     copyVolatileString(currentArtist, localArtist, METADATA_BUFFER_SIZE);
 
     if (localArtist[0] != '\0' && strcmp(localArtist, printedArtist) != 0) {
-      Serial1.print("BT:ARTIST:");
-      Serial1.println(localArtist);
+      Serial2.print("BT:ARTIST:");
+      Serial2.println(localArtist);
       strcpy(printedArtist, localArtist);
-      Serial1.flush();
+      Serial2.flush();
     }
   }
 
@@ -240,10 +240,10 @@ void loop() {
     copyVolatileString(currentTitle, localTitle, METADATA_BUFFER_SIZE);
 
     if (localTitle[0] != '\0' && strcmp(localTitle, printedTitle) != 0) {
-      Serial1.print("BT:TITLE:");
-      Serial1.println(localTitle);
+      Serial2.print("BT:TITLE:");
+      Serial2.println(localTitle);
       strcpy(printedTitle, localTitle);
-      Serial1.flush();
+      Serial2.flush();
     }
   }
 

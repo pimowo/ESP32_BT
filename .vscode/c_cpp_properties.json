@@ -8,6 +8,7 @@
         {
             "name": "PlatformIO",
             "includePath": [
+                "c:/Users/piotrek/Documents/PlatformIO/Projects/ESP32_BT/include",
                 "c:/Users/piotrek/Documents/PlatformIO/Projects/ESP32_BT/src",
                 "c:/Users/piotrek/Documents/PlatformIO/Projects/ESP32_BT/.pio/libdeps/esp32dev/ESP32-A2DP/src",
                 "c:/Users/piotrek/Documents/PlatformIO/Projects/ESP32_BT/.pio/libdeps/esp32dev/audio-tools/src",
@@ -355,6 +356,7 @@
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
+                    "c:/Users/piotrek/Documents/PlatformIO/Projects/ESP32_BT/include",
                     "c:/Users/piotrek/Documents/PlatformIO/Projects/ESP32_BT/src",
                     "c:/Users/piotrek/Documents/PlatformIO/Projects/ESP32_BT/.pio/libdeps/esp32dev/ESP32-A2DP/src",
                     "c:/Users/piotrek/Documents/PlatformIO/Projects/ESP32_BT/.pio/libdeps/esp32dev/audio-tools/src",

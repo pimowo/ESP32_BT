@@ -26,8 +26,10 @@ GPIO 22 (DIN)  DIN
 GND            GND
 5V             VCC
 
-UART1 Metadane:
-ESP32 TX (GPIO 17) -> RX drugiego urządzenia
+UART2 Metadane:
+ESP32 GPIO17 (TX) → yoRadio GPIO15 (RX)
+ESP32 GPIO16 (RX) → yoRadio GPIO16 (TX)
+GND wspólny.
 ```
 
 ## Instalacja i budowa
@@ -41,7 +43,7 @@ ESP32 TX (GPIO 17) -> RX drugiego urządzenia
 - **Nazwa BT**: "yoRadio PMW"
 - **PIN**: "9876"
 - **UART Status**: Serial (115200 baud) - GPIO 1 TX, GPIO 3 RX
-- **UART Metadane**: Serial1 (115200 baud) - GPIO 17 TX
+- **UART Metadane**: Serial2 (115200 baud) - GPIO 16 RX, GPIO 17 TX
 
 ## Użycie
 1. Wgraj firmware na ESP32.
