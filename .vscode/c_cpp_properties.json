@@ -705,6 +705,7 @@
                 "ARDUINO_ESP32_DEV",
                 "CORE_DEBUG_LEVEL=0",
                 "ARDUINO_USB_CDC_ON_BOOT=0",
+                "BLUETOOTH_BLE_DISABLE",
                 "ESP32_ARDUINO_LIB_BUILDER",
                 "ESP_MDNS_VERSION_NUMBER=\"1.9.1\"",
                 "ESP_PLATFORM",

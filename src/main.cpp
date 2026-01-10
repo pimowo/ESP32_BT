@@ -17,6 +17,7 @@
 #include "AudioTools.h"
 #include "BluetoothA2DPSink.h"
 #include "esp_gap_bt_api.h"
+#include "esp_task_wdt.h"
 #include "config.h"
 #include "utils.h"
 #include "callbacks.h"
@@ -62,6 +63,9 @@ BluetoothA2DPSink a2dp_sink(i2s);
 // ============================================================================
 
 void setup() {
+  // Inicjalizacja watchdog (10s timeout) dla stabilności systemu
+  esp_task_wdt_init(10, true);
+
   // Inicjalizacja UART dla PC (debug/status) - jeśli włączony
   Serial.begin(115200);
   if (!Serial) {
@@ -181,14 +185,12 @@ void loop() {
     Serial1.flush();
   }
 
-  // 2. Ustawienie głośności z opóźnieniem (ochrona przed overflow millis)
-  if (volumeSetPending) {
-    if ((now - volumeSetTime) < 0x80000000UL) {
-      volumeSetPending = false;
-      a2dp_sink.set_volume(127);
-      if (ENABLE_SERIAL_DEBUG) Serial.println("BT:VOLUME:MAX");
-      if (ENABLE_SERIAL_DEBUG) Serial.flush();
-    }
+  // 2. Ustawienie głośności z opóźnieniem
+  if (volumeSetPending && (millis() - volumeSetTime >= VOLUME_DELAY_MS)) {
+    volumeSetPending = false;
+    a2dp_sink.set_volume(127);
+    if (ENABLE_SERIAL_DEBUG) Serial.println("BT:VOLUME:MAX");
+    if (ENABLE_SERIAL_DEBUG) Serial.flush();
   }
 
   // 3. Obsługa rozłączenia BT

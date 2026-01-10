@@ -43,6 +43,30 @@
  C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/cores/esp32/freertos_stats.h \
  C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/cores/esp32/io_pin_remap.h \
  C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFi.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/cores/esp32/Print.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiType.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiSTA.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiGeneric.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/libraries/Network/src/Network.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/libraries/Network/src/NetworkInterface.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/cores/esp32/Printable.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/libraries/Network/src/NetworkEvents.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/libraries/Network/src/NetworkManager.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/cores/esp32/WString.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/libraries/Network/src/NetworkClient.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/cores/esp32/Client.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/libraries/Network/src/NetworkServer.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/cores/esp32/Server.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/libraries/Network/src/NetworkUdp.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/cores/esp32/Udp.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/cores/esp32/cbuf.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiAP.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiScan.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiClient.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiServer.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiUdp.h \
+ C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/libraries/Network/src/NetworkUdp.h \
  .pio/libdeps/esp32dev/audio-tools/src/AudioTools.h \
  .pio/libdeps/esp32dev/audio-tools/src/AudioToolsConfig.h \
  .pio/libdeps/esp32dev/audio-tools/src/AudioTools/PlatformConfig/desktop.h \
@@ -57,7 +81,6 @@
  .pio/libdeps/esp32dev/audio-tools/src/AudioTools/CoreAudio/AudioBasic/Collections/Allocator.h \
  .pio/libdeps/esp32dev/audio-tools/src/AudioTools/CoreAudio/AudioLogger.h \
  .pio/libdeps/esp32dev/audio-tools/src/AudioTools/CoreAudio/AudioLoggerSTD.h \
- C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/cores/esp32/Print.h \
  .pio/libdeps/esp32dev/audio-tools/src/AudioTools/Concurrency/LockGuard.h \
  .pio/libdeps/esp32dev/audio-tools/src/AudioTools/Concurrency/Mutex.h \
  .pio/libdeps/esp32dev/audio-tools/src/AudioTools/Concurrency/RTOS/MutexRTOS.h \
@@ -135,7 +158,6 @@
  .pio/libdeps/esp32dev/audio-tools/src/AudioTools/Communication/HTTP/HttpChunkReader.h \
  .pio/libdeps/esp32dev/audio-tools/src/AudioTools/Communication/HTTP/HttpHeader.h \
  .pio/libdeps/esp32dev/audio-tools/src/AudioTools/Communication/HTTP/AudioClient.h \
- C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/cores/esp32/Client.h \
  .pio/libdeps/esp32dev/audio-tools/src/AudioTools/Communication/HTTP/HttpLineReader.h \
  .pio/libdeps/esp32dev/audio-tools/src/AudioTools/Communication/HTTP/Url.h \
  .pio/libdeps/esp32dev/audio-tools/src/AudioTools/CoreAudio/AudioBasic/Debouncer.h \
@@ -198,4 +220,5 @@
  .pio/libdeps/esp32dev/ESP32-A2DP/src/A2DPVolumeControl.h \
  C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-bt.h \
  C:/Users/piotrek/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-log.h \
- .pio/libdeps/esp32dev/ESP32-A2DP/src/BluetoothA2DPOutput.h
+ .pio/libdeps/esp32dev/ESP32-A2DP/src/BluetoothA2DPOutput.h \
+ include/config.h include/utils.h include/callbacks.h

@@ -3,7 +3,7 @@
 #define CONFIG_H
 
 // Wersja projektu
-#define VERSION 0.1
+#define VERSION 1.0
 
 // Piny I2S dla audio
 #define I2S_BCK   26  // Bit Clock
