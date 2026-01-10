@@ -1,6 +1,7 @@
 // callbacks.cpp - Implementacje funkcji callback
 #include "callbacks.h"
 #include "utils.h"
+#include "config.h"
 #include <Arduino.h>
 
 // Zewnętrzne zmienne (z main.cpp)

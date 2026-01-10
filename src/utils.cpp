@@ -1,14 +1,18 @@
 // utils.cpp - Implementacje funkcji pomocniczych
 #include "utils.h"
+#include "config.h"
 
-// Konwertuje adres MAC na string
+// Extern zmienne globalne (z main.cpp)
+extern portMUX_TYPE metadataMux;
+
+// Konwertuje adres MAC na string (format XX:XX:XX:XX:XX:XX)
 void macToString(const uint8_t *mac, char *output) {
   if (!mac || !output) return;
   snprintf(output, MAC_BUFFER_SIZE, "%02X:%02X:%02X:%02X:%02X:%02X",
            mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
 }
 
-// Bezpieczna kopia volatile string z mutex
+// Bezpieczna kopia volatile string z mutex (chroni przed wyścigami wątków)
 void copyVolatileString(volatile char *src, char *dst, size_t size) {
   portENTER_CRITICAL(&metadataMux);
   strncpy(dst, (char*)src, size - 1);

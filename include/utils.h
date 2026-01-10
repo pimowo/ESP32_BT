@@ -1,13 +1,13 @@
-// utils.h - Funkcje pomocnicze
+// utils.h - Deklaracje funkcji pomocniczych
 #ifndef UTILS_H
 #define UTILS_H
 
 #include <Arduino.h>
 
-// Konwertuje adres MAC na string
+// Konwertuje adres MAC na string (format XX:XX:XX:XX:XX:XX)
 void macToString(const uint8_t *mac, char *output);
 
-// Bezpieczna kopia volatile string z mutex
+// Bezpieczna kopia volatile string z mutex (chroni przed wyścigami)
 void copyVolatileString(volatile char *src, char *dst, size_t size);
 
 // Bezpieczny zapis do volatile string z mutex
