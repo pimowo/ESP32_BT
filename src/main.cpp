@@ -160,6 +160,42 @@ void loop() {
         if (ENABLE_SERIAL_DEBUG) Serial.println("Received RESET, restarting...");
         ESP.restart();
       }
+      // Komendy AVRCP - kontrola odtwarzania muzyki
+      else if (strcmp(cmd, "PLAY") == 0) {
+        a2dp_sink.play();
+        if (ENABLE_SERIAL_DEBUG) Serial.println("BT:PLAY:CMD");
+        Serial2.println("BT:PLAY:OK");
+      }
+      else if (strcmp(cmd, "PAUSE") == 0) {
+        a2dp_sink.pause();
+        if (ENABLE_SERIAL_DEBUG) Serial.println("BT:PAUSE:CMD");
+        Serial2.println("BT:PAUSE:OK");
+      }
+      else if (strcmp(cmd, "STOP") == 0) {
+        a2dp_sink.stop();
+        if (ENABLE_SERIAL_DEBUG) Serial.println("BT:STOP:CMD");
+        Serial2.println("BT:STOP:OK");
+      }
+      else if (strcmp(cmd, "NEXT") == 0) {
+        a2dp_sink.next();
+        if (ENABLE_SERIAL_DEBUG) Serial.println("BT:NEXT:CMD");
+        Serial2.println("BT:NEXT:OK");
+      }
+      else if (strcmp(cmd, "PREVIOUS") == 0 || strcmp(cmd, "PREV") == 0) {
+        a2dp_sink.previous();
+        if (ENABLE_SERIAL_DEBUG) Serial.println("BT:PREVIOUS:CMD");
+        Serial2.println("BT:PREVIOUS:OK");
+      }
+      else if (strcmp(cmd, "FORWARD") == 0 || strcmp(cmd, "FF") == 0) {
+        a2dp_sink.fast_forward();
+        if (ENABLE_SERIAL_DEBUG) Serial.println("BT:FORWARD:CMD");
+        Serial2.println("BT:FORWARD:OK");
+      }
+      else if (strcmp(cmd, "REWIND") == 0 || strcmp(cmd, "RW") == 0) {
+        a2dp_sink.rewind();
+        if (ENABLE_SERIAL_DEBUG) Serial.println("BT:REWIND:CMD");
+        Serial2.println("BT:REWIND:OK");
+      }
     }
   }
 
@@ -207,8 +243,8 @@ void loop() {
     uint32_t elapsed = now - volumeSetTime;
     if (elapsed >= VOLUME_DELAY_MS) {
       volumeSetPending = false;
-      a2dp_sink.set_volume(127);
-      if (ENABLE_SERIAL_DEBUG) Serial.println("BT:VOLUME:MAX");
+      a2dp_sink.set_volume(VOLUME_MAX);
+      if (ENABLE_SERIAL_DEBUG) Serial.println("BT:VOLUME:SET");
       if (ENABLE_SERIAL_DEBUG) Serial.flush();
     }
   }

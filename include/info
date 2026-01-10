@@ -1,0 +1,49 @@
+Oto wszystkie dostępne komendy UART do sterowania ESP32 BT przez Serial2 (GPIO16/17):
+
+Komendy systemowe:
+RESET
+Opis: Restartuje urządzenie ESP32
+Odpowiedź: Brak (urządzenie się restartuje)
+Debug: Received RESET, restarting...
+Komendy AVRCP (kontrola muzyki):
+PLAY
+Opis: Rozpoczyna odtwarzanie muzyki
+Odpowiedź: BT:PLAY:OK
+Debug: BT:PLAY:CMD
+PAUSE
+Opis: Pauzuje odtwarzanie muzyki
+Odpowiedź: BT:PAUSE:OK
+Debug: BT:PAUSE:CMD
+STOP
+Opis: Zatrzymuje odtwarzanie muzyki
+Odpowiedź: BT:STOP:OK
+Debug: BT:STOP:CMD
+NEXT
+Opis: Następny utwór
+Odpowiedź: BT:NEXT:OK
+Debug: BT:NEXT:CMD
+PREVIOUS lub PREV
+Opis: Poprzedni utwór
+Odpowiedź: BT:PREVIOUS:OK
+Debug: BT:PREVIOUS:CMD
+FORWARD lub FF
+Opis: Przewijanie do przodu (fast forward)
+Odpowiedź: BT:FORWARD:OK
+Debug: BT:FORWARD:CMD
+REWIND lub RW
+Opis: Przewijanie do tyłu (rewind)
+Odpowiedź: BT:REWIND:OK
+Debug: BT:REWIND:CMD
+Informacje o użyciu:
+Format komend:
+Wysyłaj komendy przez UART2 zakończone znakiem nowej linii \n
+Wielkość liter ma znaczenie (wielkie litery)
+Komendy są przetwarzane natychmiast po odebraniu
+Warunki działania:
+Komendy AVRCP działają tylko gdy urządzenie BT jest połączone
+Wymagają wsparcia AVRCP ze strony telefonu
+Odpowiedzi:
+Wszystkie komendy AVRCP zwracają potwierdzenie przez UART2
+Debug output przez Serial (jeśli włączony w config.h)
+Przykłady użycia:
+Wszystkie komendy są gotowe do użycia!
