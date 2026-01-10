@@ -210,6 +210,10 @@ void loop() {
     connectedDeviceName[0] = '\0';
     connectedDeviceMAC[0] = '\0';
 
+    // Wyczyść cache metadanych (żeby nowe urządzenie mogło wysłać te same tytuły)
+    printedTitle[0] = '\0';
+    printedArtist[0] = '\0';
+
     if (ENABLE_SERIAL_DEBUG) Serial.println("BT:DISCONNECTED");
     Serial2.println("BT:DISCONNECTED");
     if (ENABLE_SERIAL_DEBUG) Serial.flush();
