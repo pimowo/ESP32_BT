@@ -1,1 +1,14 @@
+# PlatformIO
+.pio/
+.vscode/
+*.code-workspace
 
+# ESP32 / Arduino
+build/
+*.bin
+*.elf
+*.map
+
+# Temporary files
+*.tmp
+*.log

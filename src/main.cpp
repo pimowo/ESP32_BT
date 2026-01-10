@@ -10,6 +10,7 @@
 */
 
 #include <Arduino.h>
+#include <WiFi.h>
 #include "AudioTools.h"
 #include "BluetoothA2DPSink.h"
 #include "esp_gap_bt_api.h"
@@ -200,6 +201,8 @@ void audio_state_changed(esp_a2d_audio_state_t state, void *ptr) {
 
 void setup() {
   Serial.begin(115200);
+  Serial1.begin(115200);  // UART1 dla metadanych
+  WiFi.mode(WIFI_OFF);    // Wyłącz WiFi całkowicie
   Serial.flush();
   delay(100);
   
@@ -317,10 +320,10 @@ void loop() {
     copyVolatileString(currentArtist, localArtist, METADATA_BUFFER_SIZE);
     
     if (localArtist[0] != '\0' && strcmp(localArtist, printedArtist) != 0) {
-      Serial.print("BT:ARTIST:");
-      Serial.println(localArtist);
+      Serial1.print("BT:ARTIST:");
+      Serial1.println(localArtist);
       strcpy(printedArtist, localArtist);
-      Serial.flush();
+      Serial1.flush();
     }
   }
   
@@ -332,10 +335,10 @@ void loop() {
     copyVolatileString(currentTitle, localTitle, METADATA_BUFFER_SIZE);
     
     if (localTitle[0] != '\0' && strcmp(localTitle, printedTitle) != 0) {
-      Serial.print("BT:TITLE:");
-      Serial.println(localTitle);
+      Serial1.print("BT:TITLE:");
+      Serial1.println(localTitle);
       strcpy(printedTitle, localTitle);
-      Serial.flush();
+      Serial1.flush();
     }
   }
   
