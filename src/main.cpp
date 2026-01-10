@@ -10,7 +10,7 @@
 */
 
 // Główny plik projektu ESP32 BT A2DP
-// Obsługuje Bluetooth audio, metadane przez UART1, status przez UART0/1
+// Obsługuje Bluetooth audio, metadane przez UART2, status przez UART0/2
 
 #include <Arduino.h>
 #include <WiFi.h>
@@ -146,13 +146,20 @@ void loop() {
   // Jawny feed watchdog dla stabilności
   yield();
 
-  // Obsługa komend przez UART2
+  // Obsługa komend przez UART2 (bez String dla uniknięcia fragmentacji pamięci)
   if (Serial2.available()) {
-    String cmd = Serial2.readStringUntil('\n');
-    cmd.trim();
-    if (cmd == "RESET") {
-      if (ENABLE_SERIAL_DEBUG) Serial.println("Received RESET, restarting...");
-      ESP.restart();
+    char cmd[32] = {0};  // Bufor na komendę
+    size_t len = Serial2.readBytesUntil('\n', cmd, sizeof(cmd) - 1);
+    if (len > 0) {
+      // Usuń białe znaki z końca
+      for (int i = len - 1; i >= 0 && (cmd[i] == '\r' || cmd[i] == '\n' || cmd[i] == ' ' || cmd[i] == '\t'); i--) {
+        cmd[i] = '\0';
+      }
+      // Sprawdź komendę RESET
+      if (strcmp(cmd, "RESET") == 0) {
+        if (ENABLE_SERIAL_DEBUG) Serial.println("Received RESET, restarting...");
+        ESP.restart();
+      }
     }
   }
 
@@ -191,12 +198,15 @@ void loop() {
     Serial2.flush();
   }
 
-  // 2. Ustawienie głośności z opóźnieniem
-  if (volumeSetPending && (millis() - volumeSetTime >= VOLUME_DELAY_MS)) {
-    volumeSetPending = false;
-    a2dp_sink.set_volume(127);
-    if (ENABLE_SERIAL_DEBUG) Serial.println("BT:VOLUME:MAX");
-    if (ENABLE_SERIAL_DEBUG) Serial.flush();
+  // 2. Ustawienie głośności z opóźnieniem (bezpieczne sprawdzenie timeout)
+  if (volumeSetPending) {
+    uint32_t elapsed = now - volumeSetTime;
+    if (elapsed >= VOLUME_DELAY_MS) {
+      volumeSetPending = false;
+      a2dp_sink.set_volume(127);
+      if (ENABLE_SERIAL_DEBUG) Serial.println("BT:VOLUME:MAX");
+      if (ENABLE_SERIAL_DEBUG) Serial.flush();
+    }
   }
 
   // 3. Obsługa rozłączenia BT
@@ -239,7 +249,7 @@ void loop() {
     Serial2.flush();
   }
   
-  // 5. Wysyłanie metadanych - ARTIST (przez UART1)
+  // 5. Wysyłanie metadanych - ARTIST (przez UART2)
   if (artistChanged) {
     artistChanged = false;
 
@@ -254,7 +264,7 @@ void loop() {
     }
   }
 
-  // 6. Wysyłanie metadanych - TITLE (przez UART1)
+  // 6. Wysyłanie metadanych - TITLE (przez UART2)
   if (titleChanged) {
     titleChanged = false;
 
