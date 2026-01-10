@@ -146,6 +146,16 @@ void loop() {
   // Jawny feed watchdog dla stabilności
   yield();
 
+  // Obsługa komend przez UART2
+  if (Serial2.available()) {
+    String cmd = Serial2.readStringUntil('\n');
+    cmd.trim();
+    if (cmd == "RESET") {
+      if (ENABLE_SERIAL_DEBUG) Serial.println("Received RESET, restarting...");
+      ESP.restart();
+    }
+  }
+
   uint32_t now = millis();
 
   // 1. Obsługa nowego połączenia BT - wykonaj tylko raz

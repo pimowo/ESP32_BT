@@ -20,6 +20,6 @@
 #define LOOP_DELAY_MS 5               // Opóźnienie w głównej pętli (ms)
 
 // Debugowanie - włącz/wyłącz komunikaty na UART0 (Serial)
-#define ENABLE_SERIAL_DEBUG 0  // 1 - włącz debug (komunikaty na PC), 0 - wyłącz (oszczędność zasobów)
+#define ENABLE_SERIAL_DEBUG 1  // 1 - włącz debug (komunikaty na PC), 0 - wyłącz (oszczędność zasobów)
 
 #endif
