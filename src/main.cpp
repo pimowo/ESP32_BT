@@ -170,6 +170,10 @@ void loop() {
     connectionPending = false;
     isConnected = true;
 
+    // Ustaw głośność na maksymalną z opóźnieniem (dla Android i iPhone)
+    volumeSetPending = true;
+    volumeSetTime = now;
+
     strcpy(connectedDeviceMAC, pendingDeviceMAC);
     strcpy(connectedDeviceName, pendingDeviceName);
 

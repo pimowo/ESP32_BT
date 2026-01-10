@@ -16,7 +16,7 @@
 #define MAC_BUFFER_SIZE 18        // Rozmiar bufora dla adresu MAC (17 znaków + null)
 #define BT_DEVICE_NAME "yoRadio PMW"  // Nazwa widoczna w BT
 #define BT_PIN_CODE "9876"            // PIN do parowania
-#define VOLUME_DELAY_MS 2000          // Opóźnienie ustawienia głośności po połączeniu
+#define VOLUME_DELAY_MS 1000          // Opóźnienie ustawienia głośności po połączeniu
 #define LOOP_DELAY_MS 5               // Opóźnienie w głównej pętli (ms)
 
 // Debugowanie - włącz/wyłącz komunikaty na UART0 (Serial)
